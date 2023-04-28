@@ -4,15 +4,17 @@ metadata:
   name: log-test
   namespace: default
   labels:
-    k8s-app: log-test
+    app.kubernetes.io/name: log-test
 spec:
   selector:
     matchLabels:
-      name: log-test
+      app.kubernetes.io/name: log-test
   template:
     metadata:
       labels:
-        name: log-test
+        app.kubernetes.io/name: log-test
+      annotations:
+        promtail.job_name: kubernetes-pods
     spec:
       tolerations:
       # these tolerations are to have the daemonset runnable on control plane nodes
